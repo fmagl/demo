@@ -53,3 +53,11 @@ Uruchom główny proces Spring Boota:
 ./mvnw spring-boot:run
 ```
 Serwer uruchomi się na porcie `8080`. Aplikacja wykorzystuje plik konfiguracyjny `application.yml`. Przy starcie Flyway automatycznie zaaplikuje pliki migracyjne, przygotowując tabele w bazie `coupon_db`.
+
+### Testy Obciążeniowe (Load Testing)
+Do projektu dołączono skrypt `load_test_k6.js` dla narzędzia **k6**, weryfikujący zachowanie systemu przy ruchu rzędu 3000 zapytań na sekundę (zgodnie z wymaganiami). 
+
+Uruchomienie testu:
+`k6 run load_test_k6.js`
+
+**Cel testu:** Skrypt celowo doprowadza do przeciążenia zewnętrznej usługi GeoIP, aby udowodnić skuteczność zaimplementowanej architektury *Resilience*. Weryfikuje on, czy w warunkach kaskadowej awarii (Cascading Failure) aplikacja poprawnie izoluje pule wątków bazy danych (HikariCP) od operacji I/O, stosując wzorzec *Fail-Fast* i utrzymując stabilność głównego procesu.
