@@ -1,7 +1,7 @@
 # Empik Coupon Management Service 🎟️
 
 ## Wstęp
-Projekt realizuje system zarządzania kuponami rabatowymi REST API. Zamiast budować skomplikowaną architekturę rozproszoną ("overengineering") dla prostej domeny, rozwiązanie skupia się na s: optymalnym wykorzystaniu bazy relacyjnej, bezpiecznej obsłudze współbieżności i wysokiej dostępności przy zakładanej skali (3000 zapytań na sekundę).
+Projekt realizuje system zarządzania kuponami rabatowymi REST API. Zamiast budować skomplikowaną architekturę rozproszoną ("overengineering") dla prostej domeny, rozwiązanie skupia się na: optymalnym wykorzystaniu bazy relacyjnej, bezpiecznej obsłudze współbieżności i wysokiej dostępności przy zakładanej skali (3000 zapytań na sekundę).
 
 ## Decyzje Architektoniczne (Design Choices)
 
