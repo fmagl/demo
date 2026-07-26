@@ -1,0 +1,32 @@
+spring:
+  application:
+    name: demo
+
+  jackson:
+    time-zone: UTC
+  
+  datasource:
+    url: jdbc:postgresql://localhost:5432/coupon_db
+    username: coupon_user
+    password: coupon_password
+    driver-class-name: org.postgresql.Driver
+    hikari:
+      maximum-pool-size: 30
+      connection-timeout: 500
+
+  jpa:
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+        jdbc:
+          time_zone: UTC
+    hibernate:
+      ddl-auto: validate 
+
+  flyway:
+    enabled: true
+
+coupon:
+  geoip:
+    base-url: http://ip-api.com/json

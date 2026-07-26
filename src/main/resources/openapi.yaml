@@ -1,0 +1,62 @@
+openapi: 3.0.3
+info:
+  title: Empik Coupon Service API
+  version: 1.0.0
+paths:
+  /api/v1/coupons:
+    post:
+      summary: Tworzy nowy kupon
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateCouponRequest'
+      responses:
+        '201':
+          description: Kupon utworzony
+  /api/v1/coupons/{code}/redeem:
+    post:
+      summary: Zużywa kupon
+      parameters:
+        - name: code
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RedeemCouponRequest'
+      responses:
+        '200':
+          description: Kupon poprawnie zużyty
+        '400':
+          description: Błędne żądanie (np. zły kraj)
+        '409':
+          description: Konflikt (kupon wyczerpany lub już użyty przez usera)
+        '404':
+          description: Kupon nie istnieje
+components:
+  schemas:
+    CreateCouponRequest:
+      type: object
+      required: [code, countryCode, maxUses]
+      properties:
+        code:
+          type: string
+        countryCode:
+          type: string
+          minLength: 2
+          maxLength: 2
+        maxUses:
+          type: integer
+          minimum: 1
+    RedeemCouponRequest:
+      type: object
+      required: [userId]
+      properties:
+        userId:
+          type: string
